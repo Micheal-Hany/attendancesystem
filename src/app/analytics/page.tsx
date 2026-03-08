@@ -63,6 +63,7 @@ export default function AnalyticsPage() {
       } else {
         setRefreshing(true);
       }
+      
 
       try {
         await load();
