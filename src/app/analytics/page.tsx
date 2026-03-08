@@ -55,14 +55,24 @@ export default function AnalyticsPage() {
   }, []);
 
   useEffect(() => {
-    if (!user || !classes.length) return;
-    if (firstLoad) {
-      setFirstLoad(false);
-    } else {
-      setRefreshing(true);
-    }
-    load().finally(() => setRefreshing(false));
-  }, [month, year, user, classes.length]);
+    if (!user || classes.length === 0) return;
+
+    const run = async () => {
+      if (firstLoad) {
+        setFirstLoad(false);
+      } else {
+        setRefreshing(true);
+      }
+
+      try {
+        await load();
+      } finally {
+        setRefreshing(false);
+      }
+    };
+
+    run();
+  }, [month, year, user, classes]);
 
   async function load() {
     if (!user) return;
