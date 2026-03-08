@@ -64,7 +64,6 @@ export default function AnalyticsPage() {
         setRefreshing(true);
       }
       
-
       try {
         await load();
       } finally {
