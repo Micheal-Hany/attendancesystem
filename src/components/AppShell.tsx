@@ -51,8 +51,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
     setNotifOpen(false);
   }, [path]);
 
-  // Load notifications (servants see them too)
-  useEffect(() => {
+   useEffect(() => {
     if (!user) return;
     getNotifications().then(setNotifications);
     // Poll every 60s
