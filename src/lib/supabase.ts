@@ -236,7 +236,7 @@ export async function createDonation(payload: Record<string, unknown>, userId?: 
   await logActivity('CREATE', 'donation', data.id, { donor: payload.donor_name, amount: payload.amount }, userId);
   return data;
 }
-export async function updateDonation(id: string, updates: Record<string, unknown>) {
+export async function updateDonation(id: string, updates: Record<string, unknown>, id: string | undefined) {
   const { data, error } = await supabase.from('donations').update(updates).eq('id', id).select().single();
   if (error) throw error;
   return data;
